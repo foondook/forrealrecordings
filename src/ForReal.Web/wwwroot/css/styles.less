@@ -16,6 +16,7 @@ h1, h2, h3, h4, h5 {
     font-style: normal;
     font-weight: 300;
     text-transform: uppercase;
+    color: @color_accent;
 }
 
 .wrapper {
@@ -25,9 +26,19 @@ h1, h2, h3, h4, h5 {
 
 header {
     height: 150px;
+    display: flex;
+    align-items: center;
+    padding: 1em;
+}
+
+hr {
+    background: @color_accent;
+    height: 1px;
+    border: 0;
 }
 
 nav {
+    padding: 1em 0;
     font-size: 24px;
     line-height: 26px;
     width: 100%;

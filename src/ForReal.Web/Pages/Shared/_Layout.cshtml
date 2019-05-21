@@ -11,13 +11,16 @@
     <body>
         <div class="wrapper">
             <header>
-                <partial name="_MainMenu" />
+                <a href="~/" class="logo"><img src="~/img/logo.png" /></a>
             </header>
+            <hr />
+            <partial name="_MainMenu" />
             <div class="container">
                 @RenderBody()
             </div>
+            <hr />
+            <partial name="_MainMenu" />
             <footer>
-                <partial name="_MainMenu" />
             </footer>
         </div>
     </body>

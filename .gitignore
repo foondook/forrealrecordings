@@ -341,3 +341,4 @@ healthchecksdb
 
 src/ForReal.Web/App_Data
 src/ForReal.Web/wwwroot/is-cache
+temp
