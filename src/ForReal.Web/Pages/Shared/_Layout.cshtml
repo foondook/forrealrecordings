@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>FRR</title>
+        <title>@ViewBag.Title - For Real Recordings</title>
         <environment names="Development">
             <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
         </environment>
@@ -10,17 +10,15 @@
     </head>
     <body>
         <div class="wrapper">
-            <header></header>
-            <nav>
-                <a href="#" class="active">Home</a>
-                <a href="#">Releases</a>
-                <a href="#">Artists</a>
-                <a href="#">Merch</a>
-                <a href="#">Contacts</a>
-            </nav>
+            <header>
+                <partial name="_MainMenu" />
+            </header>
             <div class="container">
                 @RenderBody()
             </div>
+            <footer>
+                <partial name="_MainMenu" />
+            </footer>
         </div>
     </body>
 </html>

@@ -1,0 +1,18 @@
+@page "{name?}"
+@inject OrchardCore.IOrchardHelper Orchard
+@addTagHelper *, OrchardCore.Media
+
+@functions {
+    [FromRoute]
+    public string Name { get; set; }
+}
+
+@if (!string.IsNullOrWhiteSpace(Name))
+{
+    <partial name="ArtistPage" model="Name" />
+} else
+{   
+    <text>     
+        Artists list goes here      
+    </text>
+}
