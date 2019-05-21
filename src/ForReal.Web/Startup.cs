@@ -25,7 +25,7 @@ namespace ForReal.Web
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseStaticFiles();
             app.UseOrchardCore();
         }
     }

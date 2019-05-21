@@ -1,0 +1,32 @@
+body {
+  background: #000;
+  color: #fff;
+}
+.wrapper {
+  margin: 0 auto;
+  max-width: 923px;
+}
+header {
+  height: 150x;
+}
+nav {
+  font-family: Gotham Pro;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 26px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.024px;
+  text-transform: uppercase;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+nav a:hover {
+  text-decoration: underline;
+}
+nav a.active {
+  color: #60B330;
+}

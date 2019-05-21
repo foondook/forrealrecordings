@@ -1,8 +1,26 @@
 <html>
     <head>
         <title>FRR</title>
+        <environment names="Development">
+            <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+        </environment>
+        <environment names="Staging,Production">
+            <link rel="stylesheet" href="~/css/styles.min.css" asp-append-version="true" />
+        </environment>
     </head>
     <body>
-        @RenderBody()
+        <div class="wrapper">
+            <header></header>
+            <nav>
+                <a href="#" class="active">Home</a>
+                <a href="#">Releases</a>
+                <a href="#">Artists</a>
+                <a href="#">Merch</a>
+                <a href="#">Contacts</a>
+            </nav>
+            <div class="container">
+                @RenderBody()
+            </div>
+        </div>
     </body>
 </html>

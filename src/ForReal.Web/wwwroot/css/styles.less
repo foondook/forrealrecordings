@@ -1,0 +1,40 @@
+@color_bg: #000;
+@color_main: #fff;
+@color_accent: #60B330;
+body {
+    background: @color_bg;
+    color: @color_main;
+}
+
+.wrapper {
+    margin: 0 auto;
+    max-width: 923px;
+}
+
+header {
+    height: 150x;
+}
+
+nav {
+    font-family: Gotham Pro;
+    font-style: normal;
+        font-weight: 300;
+        font-size: 24px;
+        line-height: 26px;
+        
+        display: flex;
+        align-items: center;
+        letter-spacing: -0.024px;
+        text-transform: uppercase;
+        
+    a {
+        color: @color_main;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+        &.active {
+            color: @color_accent;
+        }
+    }
+}

@@ -1,0 +1,18 @@
+@page "{name}"
+@inject OrchardCore.IOrchardHelper Orchard
+@addTagHelper *, OrchardCore.Media
+
+@functions {
+    [FromRoute]
+    public string Name { get; set; }
+}
+
+@{
+    var artist = await Orchard.GetContentItemByAliasAsync($"alias:{Name}");
+}
+
+<a href="~/artist/@artist.Content.AliasPart.Alias">@artist</a>
+<img asset-src="@artist.Content.Artist.Image.Paths[0]" img-width="100" />
+<div>
+    @Html.Raw(artist.Content.HtmlBodyPart.Html)
+</div>
