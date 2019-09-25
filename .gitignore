@@ -342,3 +342,5 @@ healthchecksdb
 src/ForReal.Web/App_Data
 src/ForReal.Web/wwwroot/is-cache
 temp
+/src/ForRealRecordings.Web/App_Data
+/src/ForRealRecordings.Web/Localization
