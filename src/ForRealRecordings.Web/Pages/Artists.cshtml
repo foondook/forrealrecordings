@@ -7,12 +7,17 @@
     public string Name { get; set; }
 }
 
+@{
+	var artists = await Orchard.GetContentItemByAliasAsync("alias:artists");
+}
+
 @if (!string.IsNullOrWhiteSpace(Name))
 {
     <partial name="ArtistPage" model="Name" />
 } else
 {   
-    <text>     
+    @(artists.Content)
+    <ul>
         
-    </text>
+    </ul>
 }

@@ -1,0 +1,15 @@
+@{
+	var artists = Documents["Artists"].ToList();
+	artists.AddRange(artists);
+	artists.AddRange(artists);
+	
+}
+<div class="tiles">
+	@foreach(IDocument artist in artists)
+	{
+		<a href="@Context.GetLink(artist)">
+			<img src="@(artist["image"])" alt="" />
+			<span class="title">@artist["name"]</span>
+		</a>
+	}
+</div>

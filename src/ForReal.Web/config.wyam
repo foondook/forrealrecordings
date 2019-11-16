@@ -1,0 +1,31 @@
+#n Wyam.Markdown
+#n Wyam.Razor
+#n Wyam.Yaml
+#n Wyam.Html 
+
+System.Globalization.CultureInfo.DefaultThreadCurrentCulture
+    = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
+
+Settings["title"] = "For Real Recordings";
+Settings["description"] = "For Real Recordings";
+Settings["banner"] = "/images/logo.png";
+
+Pipelines.Add("Artists",
+	ReadFiles("artists/*.md"),
+	FrontMatter(Yaml()),
+	Markdown(),
+	Excerpt(),
+	WriteFiles(".html").OnlyMetadata(),  // Sets the .html extension before rendering pages and generating links
+	Razor(),
+	WriteFiles()
+);
+
+Pipelines.Add("Pages",
+	ReadFiles("*.cshtml"),
+	Razor(),
+	WriteFiles(".html")
+);
+
+Pipelines.Add("Resources",
+	CopyFiles("**/*{!.cshtml,!.md,!.yaml,}")
+);

@@ -344,3 +344,4 @@ src/ForReal.Web/wwwroot/is-cache
 temp
 /src/ForRealRecordings.Web/App_Data
 /src/ForRealRecordings.Web/Localization
+src/ForRealRecordings.Web/wwwroot/is-cache/*

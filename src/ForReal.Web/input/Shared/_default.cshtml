@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+  @Html.Partial("partials/_head")
+
+  <body>
+    <div class="wrapper">
+            <header>
+                <a href="~/" class="logo"><img src="~/images/logo.png" /></a>
+                <div class="social-buttons">
+                    <ul class="social-list">
+                        <li><a href="#"><i class="facebook"></i></a></li>
+                        <li><a href="#"><i class="twitter"></i></a></li>
+                        <li><a href="#"><i class="instagram"></i></a></li>
+                        <li><a href="#"><i class="youtube"></i></a></li>
+                        <li><a href="#"><i class="soundcloud"></i></a></li>
+                    <li><a href="#"><i class="spotify"></i></a></li>
+                    </ul>
+                    <button>For Real Newsletter</button>
+                    <button class="rounded accent"><i class="spotify"></i>Follow</button>
+                </div>
+            </header>
+            <hr />
+            @Html.Partial("partials/_menu")
+            <div class="container">
+                @RenderBody()
+            </div>
+            <hr />
+            @Html.Partial("partials/_menu")
+        </div>
+  </body>
+
+</html>

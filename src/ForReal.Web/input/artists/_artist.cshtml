@@ -1,0 +1,13 @@
+@{
+    Layout = @"../Shared/_default.cshtml";
+}
+<article>
+    <figure>
+            <img src="@Model["image"]" img-width="100" />
+        </figure>
+    <section>
+        <h1>@Model["name"]</h1>
+        @RenderBody()
+    </section>
+    <section style="clear: both;"></section>
+</article>
