@@ -1,3 +1,52 @@
-@page
-test
-Releases
+@page "{name?}"
+@inject OrchardCore.IOrchardHelper Orchard
+@addTagHelper *, OrchardCore.Media
+
+@functions {
+    [FromRoute]
+    public string Name { get; set; }
+}
+
+@if (!string.IsNullOrWhiteSpace(Name))
+{
+    var release = (await Orchard.GetContentItemByAliasAsync($"alias:{Name}"));
+    ViewBag.Title = release.DisplayText;
+    <article>
+        <figure>
+        @if (release.Content.Release.Image.Paths.Count > 0) 
+        {
+            <img asset-src="@release.Content.Release.Image.Paths[0]" alt="@release" />
+        } else 
+        {
+            <img src="~/img/release.jpg" alt="@release" />
+        }
+        </figure>
+        <section>
+            <h1>@release</h1>
+            @Html.Raw(release.Content.HtmlBodyPart.Html)
+        </section>
+        <section style="clear: both;"></section>
+    </article>
+} 
+else
+{   
+    var releases = (await Orchard.GetRecentContentItemsByContentTypeAsync("Release", 100));
+    ViewBag.Title = "Releases";
+    @*@Orchard.ConsoleLog(releases)*@
+    <div class="tiles">
+        @foreach(var release in releases)
+        {
+            <a href="~/releases/@release.Content.AliasPart.Alias">
+                @if (release.Content.Release.Image.Paths.Count > 0) 
+                {
+                <img asset-src="@release.Content.Release.Image.Paths[0]" alt="@release" />
+                } else 
+                {
+                    <img src="~/img/release.jpg" alt="@release" />
+                }
+                <span class="title">@release</span>
+            </a>
+        }
+    </div>
+}
+

@@ -3,21 +3,53 @@
 @addTagHelper *, OrchardCore.Media
 
 @functions {
-    [FromRoute]
-    public string Name { get; set; }
-}
-
-@{
-	var artists = await Orchard.GetContentItemByAliasAsync("alias:artists");
+	[FromRoute]
+	public string Name { get; set; }
 }
 
 @if (!string.IsNullOrWhiteSpace(Name))
 {
-    <partial name="ArtistPage" model="Name" />
-} else
-{   
-    @(artists.Content)
-    <ul>
-        
-    </ul>
+	var artist = (await Orchard.GetContentItemByAliasAsync($"alias:{Name}"));
+	ViewBag.Title = artist.DisplayText;
+	<article>
+		<figure>
+			@if (artist.Content.Artist.Image.Paths.Count > 0)
+			{
+				<img asset-src="@artist.Content.Artist.Image.Paths[0]" alt="@artist" />
+			}
+			else
+			{
+				<img src="~/img/artist.jpg" alt="@artist" />
+			}
+		</figure>
+		<section>
+			<h1>@artist</h1>
+			@Html.Raw(artist.Content.HtmlBodyPart.Html)
+		</section>
+		<section style="clear: both;"></section>
+	</article>
+}
+else
+{
+	var artists = (await Orchard.GetRecentContentItemsByContentTypeAsync("Artist", 100))
+					.Where(a => a.Content.Artist.Show.Value == true);
+
+	ViewBag.Title = "Artists";
+
+	<div class="tiles">
+		@foreach (var artist in artists)
+		{
+			<a href="~/artists/@artist.Content.AliasPart.Alias">
+				@if (artist.Content.Artist.Image.Paths.Count > 0)
+				{
+					<img asset-src="@artist.Content.Artist.Image.Paths[0]" alt="@artist" />
+				}
+				else
+				{
+					<img src="~/img/artist.jpg" alt="@artist" />
+				}
+				<span class="title">@artist</span>
+			</a>
+		}
+	</div>
 }
