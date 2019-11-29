@@ -9,7 +9,7 @@
         </environment>
     </head>
     <body>
-        <div class="wrapper">
+        <main class="wrapper">
             <header>
                 <a href="~/" class="logo"><img src="~/img/logo.png" /></a>
                 <div class="social-buttons">
@@ -27,12 +27,25 @@
             </header>
             <hr />
             <partial name="_MainMenu" />
-            <div class="container">
+            <main>
                 @RenderBody()
-            </div>
+            </main>
             <hr />
             <partial name="_MainMenu" />
             <footer>
+                <div class="social-buttons">
+                    <ul class="social-list">
+                        <li><a href="#"><i class="facebook"></i></a></li>
+                        <li><a href="#"><i class="twitter"></i></a></li>
+                        <li><a href="#"><i class="instagram"></i></a></li>
+                        <li><a href="#"><i class="youtube"></i></a></li>
+                        <li><a href="#"><i class="soundcloud"></i></a></li>
+                        <li><a href="#"><i class="spotify"></i></a></li>
+                    </ul>
+                    <br />
+                    <button>For Real Newsletter</button>
+                </div>
+                <br />
             </footer>
         </div>
     </body>

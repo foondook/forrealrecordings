@@ -1,6 +1,54 @@
-@page
+@page "{name?}"
 @inject OrchardCore.IOrchardHelper Orchard
 @addTagHelper *, OrchardCore.Media
-@{ 
-	ViewBag.Title = "Merch";
+
+@functions {
+	[FromRoute]
+	public string Name { get; set; }
+}
+
+@if (!string.IsNullOrWhiteSpace(Name))
+{
+	var product = (await Orchard.GetContentItemByAliasAsync($"alias:{Name}"));
+	ViewBag.Title = product.DisplayText;
+<article>
+	<figure>
+		@if (product.Content.Product.Image.Paths.Count > 0)
+			{
+		<img asset-src="@product.Content.Product.Image.Paths[0]" alt="@product" />
+			}
+			else
+			{
+		<img src="~/img/product.jpg" alt="@product" />
+			}
+	</figure>
+	<section>
+		<h1>@product</h1>
+		@Html.Raw(product.Content.HtmlBodyPart.Html)
+	</section>
+	<section style="clear: both;"></section>
+</article>
+}
+else
+{
+	var products = (await Orchard.GetRecentContentItemsByContentTypeAsync("Product", 100));
+
+	ViewBag.Title = "Products";
+
+<div class="tiles">
+	@foreach (var product in products)
+		{
+	<a href="~/merch/@product.Content.AliasPart.Alias">
+		@if (product.Content.Product.Image.Paths.Count > 0)
+				{
+		<img asset-src="@product.Content.Product.Image.Paths[0]" alt="@product" />
+				}
+				else
+				{
+		<img src="~/img/product.jpg" alt="@product" />
+				}
+		<span class="title">@product</span>
+	</a>
+		}
+</div>
 }

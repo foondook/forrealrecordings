@@ -47,6 +47,7 @@ hr {
     margin: 0;
 }
 a { color: @color_accent; }
+
 nav {
     padding: .5em 0;
     font-size: 24px;
@@ -142,6 +143,28 @@ nav {
                 }
             }
         }
+    }
+}
+
+button {
+    background: @color_main;
+    color: @color_bg;
+    border: 0;
+    padding: .2em 1em;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+main {
+    min-height: calc(100% - 360px);
+}
+
+footer {
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+
+    .social-buttons {
+        text-align: center;
     }
 }
 
