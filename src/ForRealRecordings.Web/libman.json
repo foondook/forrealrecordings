@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+	"libraries": [
+		{
+			"provider": "unpkg",
+			"library": "siema@1.5.1",
+			"destination": "wwwroot/lib/siema/",
+			"files": [
+				"dist/siema.min.js"
+			]
+		}
+	]
+}
