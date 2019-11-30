@@ -1,5 +1,4 @@
 @page
-
 @inject OrchardCore.IOrchardHelper Orchard
 
 @{
@@ -7,11 +6,39 @@
 }
 
 <section>
+</section>
+@*////////// UPCOMING RELEASES //////////*@
+@{ 
+	var upcoming = (await Orchard.GetRecentContentItemsByContentTypeAsync("UpcomingRelease", 1)).FirstOrDefault();
+}
+@if (upcoming != null)
+{
+	<section>
+		<h2>Upcoming Release</h2>
+		<img asset-src="@upcoming.Content.UpcomingRelease.Image.Paths[0]" />
+	</section>
+}
+@*////////// LATEST RELEASES ///////////*@
+@{ var latest = (await Orchard.GetRecentContentItemsByContentTypeAsync("Release", 3)); }
+@if (latest.Count() > 0) 
+{
+	<section>
+		<h2>Latest Releases</h2>
 
-</section>
-<section>
-    <h2>Upcoming Release</h2>
-</section>
-<section>
-    <h2>Latest Releases</h2>
-</section>
+		<div class="tiles">
+			@foreach(var release in latest)
+			{
+			<a href="~/releases/@release.Content.AliasPart.Alias">
+				@if (release.Content.Release.Image.Paths.Count > 0)
+					{
+				<img asset-src="@release.Content.Release.Image.Paths[0]" alt="@release" />
+					} else
+					{
+				<img src="~/img/release.jpg" alt="@release" />
+					}
+				<span class="title">@release</span>
+			</a>
+			}
+		</div>
+	</section>
+}
