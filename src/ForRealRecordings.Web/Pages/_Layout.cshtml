@@ -1,52 +1,53 @@
 <html>
-    <head>
-        <title>@ViewBag.Title - For Real Recordings</title>
-        <environment names="Development">
-            <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
-        </environment>
-        <environment names="Staging,Production">
-            <link rel="stylesheet" href="~/css/styles.min.css" asp-append-version="true" />
-        </environment>
-    </head>
-    <body>
-        <div class="wrapper">
-            <header>
-                <a href="~/" class="logo"><img src="~/img/logo.png" /></a>
-                <div class="social-buttons">
-                    <ul class="social-list">
-                        <li><a href="#"><i class="facebook"></i></a></li>
-                        <li><a href="#"><i class="twitter"></i></a></li>
-                        <li><a href="#"><i class="instagram"></i></a></li>
-                        <li><a href="#"><i class="youtube"></i></a></li>
-                        <li><a href="#"><i class="soundcloud"></i></a></li>
-                    <li><a href="#"><i class="spotify"></i></a></li>
-                    </ul>
-                    <button>For Real Newsletter</button>
-                    <button class="rounded accent"><i class="spotify"></i>Follow</button>
-                </div>
-            </header>
-            <hr />
-            <partial name="_MainMenu" />
-            <main>
-                @RenderBody()
-            </main>
-            <hr />
-            <partial name="_MainMenu" />
-            <footer>
-                <div class="social-buttons">
-                    <ul class="social-list">
-                        <li><a href="#"><i class="facebook"></i></a></li>
-                        <li><a href="#"><i class="twitter"></i></a></li>
-                        <li><a href="#"><i class="instagram"></i></a></li>
-                        <li><a href="#"><i class="youtube"></i></a></li>
-                        <li><a href="#"><i class="soundcloud"></i></a></li>
-                        <li><a href="#"><i class="spotify"></i></a></li>
-                    </ul>
-                    <br />
-                    <button>For Real Newsletter</button>
-                </div>
-                <br />
-            </footer>
-        </div>
-    </body>
+<head>
+	<title>@ViewBag.Title - For Real Recordings</title>
+	<environment names="Development">
+		<link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+	</environment>
+	<environment names="Staging,Production">
+		<link rel="stylesheet" href="~/css/styles.min.css" asp-append-version="true" />
+	</environment>
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<a href="~/" class="logo"><img src="~/img/logo.png" /></a>
+			<div class="social-buttons">
+				<ul class="social-list">
+					<li><a href="#"><i class="facebook"></i></a></li>
+					<li><a href="#"><i class="twitter"></i></a></li>
+					<li><a href="#"><i class="instagram"></i></a></li>
+					<li><a href="#"><i class="youtube"></i></a></li>
+					<li><a href="#"><i class="soundcloud"></i></a></li>
+					<li><a href="#"><i class="spotify"></i></a></li>
+				</ul>
+				<button>For Real Newsletter</button>
+				<button class="rounded accent"><i class="spotify"></i>Follow</button>
+			</div>
+		</header>
+		<hr />
+		<partial name="_MainMenu" />
+		<main>
+			@RenderBody()
+		</main>
+		<hr />
+		<partial name="_MainMenu" />
+		<footer>
+			<div class="social-buttons">
+				<ul class="social-list">
+					<li><a href="#"><i class="facebook"></i></a></li>
+					<li><a href="#"><i class="twitter"></i></a></li>
+					<li><a href="#"><i class="instagram"></i></a></li>
+					<li><a href="#"><i class="youtube"></i></a></li>
+					<li><a href="#"><i class="soundcloud"></i></a></li>
+					<li><a href="#"><i class="spotify"></i></a></li>
+				</ul>
+				<br />
+				<button>For Real Newsletter</button>
+			</div>
+			<br />
+		</footer>
+	</div>
+	@RenderSection("scripts", required: false)
+</body>
 </html>

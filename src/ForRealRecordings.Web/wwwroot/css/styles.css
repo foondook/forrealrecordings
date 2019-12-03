@@ -163,3 +163,10 @@ article figure {
 article figure img {
   max-width: 300px;
 }
+#slides button {
+  width: 100px;
+  cursor: pointer;
+}
+#slides button:hover {
+  background-color: #60B330;
+}

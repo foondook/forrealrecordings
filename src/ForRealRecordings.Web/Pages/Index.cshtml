@@ -2,13 +2,23 @@
 @inject OrchardCore.IOrchardHelper Orchard
 
 @{
-    ViewBag.Title = "Home";
+	ViewBag.Title = "Home";
+	var slides = await Orchard.GetRecentContentItemsByContentTypeAsync("Slides", 1);
 }
 
-<section>
-</section>
+@Orchard.ConsoleLog(slides)
+
+@if (slides != null && slides.Count() > 0)
+{
+	<section id="slides">
+		@foreach (var slide in slides.First().Content.BagPart.ContentItems)
+		{
+			<div><a href="@slide.Slide.Url.Url" title="@slide.Slide.Url.Text"><img asset-src="@slide.Slide.Image.Paths[0]" /></a></div>
+		}
+	</section>
+}
 @*////////// UPCOMING RELEASES //////////*@
-@{ 
+@{
 	var upcoming = (await Orchard.GetRecentContentItemsByContentTypeAsync("UpcomingRelease", 1)).FirstOrDefault();
 }
 @if (upcoming != null)
@@ -18,27 +28,64 @@
 		<img asset-src="@upcoming.Content.UpcomingRelease.Image.Paths[0]" />
 	</section>
 }
+
 @*////////// LATEST RELEASES ///////////*@
 @{ var latest = (await Orchard.GetRecentContentItemsByContentTypeAsync("Release", 3)); }
-@if (latest.Count() > 0) 
+@if (latest.Count() > 0)
 {
 	<section>
 		<h2>Latest Releases</h2>
 
 		<div class="tiles">
-			@foreach(var release in latest)
+			@foreach (var release in latest)
 			{
-			<a href="~/releases/@release.Content.AliasPart.Alias">
-				@if (release.Content.Release.Image.Paths.Count > 0)
+				<a href="~/releases/@release.Content.AliasPart.Alias">
+					@if (release.Content.Release.Image.Paths.Count > 0)
 					{
-				<img asset-src="@release.Content.Release.Image.Paths[0]" alt="@release" />
-					} else
-					{
-				<img src="~/img/release.jpg" alt="@release" />
+						<img asset-src="@release.Content.Release.Image.Paths[0]" alt="@release" />
 					}
-				<span class="title">@release</span>
-			</a>
+					else
+					{
+						<img src="~/img/release.jpg" alt="@release" />
+					}
+					<span class="title">@release</span>
+				</a>
 			}
 		</div>
 	</section>
+}
+
+@section scripts
+{
+	<script src="~/lib/siema/dist/siema.min.js"></script>
+	<script>
+		const slides = new Siema({
+			selector: '#slides',
+			duration: 200,
+			easing: 'ease-out',
+			perPage: 1,
+			startIndex: 0,
+			draggable: true,
+			multipleDrag: false,
+			threshold: 20,
+			loop: true,
+			rtl: false,
+			//onInit: function () {
+			//	for (let i = 0; i < this.innerElements.length; i++) {
+			//		const btn = document.createElement('button');
+			//		btn.addEventListener('click', () => this.goTo(i));
+			//		this.selector.appendChild(btn);
+			//	}
+			//	setInterval(() => { this.next(); }, 5000);
+			//},
+			//onChange: function () {
+			//	let buttons = [...this.selector.children];
+			//	buttons.pop();
+			//	for (let button of buttons) {
+			//		button.className = '';
+			//	}
+			//	buttons[this.currentSlide].className = 'active';
+			//}
+		});
+	</script>
 }
